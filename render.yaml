@@ -12,8 +12,7 @@ services:
     rootDir: backend
     plan: free
     healthCheckPath: /healthz
-    # Runs on every release, before traffic switches. Both commands are idempotent.
-    preDeployCommand: python manage.py migrate --noinput && python manage.py seed_demo --users-only
+    # Migrations and seeding run at container start (see backend/Dockerfile): pre-deploy commands need a paid plan.
     envVars:
       - key: DATABASE_URL
         fromDatabase:

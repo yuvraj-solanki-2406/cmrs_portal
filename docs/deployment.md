@@ -17,7 +17,7 @@ The repository root is the project folder (`backend/`, `frontend/`, `render.yaml
 3. In the `cmrs-api` service add:
    - `DEMO_PASSWORD` — the password for all demo users (optional; the default `Cmrs@12345` is public in the README).
    - `CSRF_TRUSTED_ORIGINS` — `https://<your-app>.vercel.app` once you know it (only needed for the Django admin; the JSON API uses bearer tokens).
-4. Every deploy runs, before traffic switches: `python manage.py migrate --noinput && python manage.py seed_demo --users-only` (both idempotent). This creates the schema, triggers, sequences, 4 roles, 2 branches and 8 users, and **no** customers or activity.
+4. Every container start runs `python manage.py migrate --noinput && python manage.py seed_demo --users-only` before gunicorn (both idempotent; done in the Dockerfile `CMD` because Render's `preDeployCommand` is not available on the free plan). This creates the schema, triggers, sequences, 4 roles, 2 branches and 8 users, and **no** customers or activity.
 5. Check: `https://<api>.onrender.com/healthz` → `ok`, `/api/docs/` → Swagger UI.
 
 Free-plan note: the free web service sleeps after inactivity, so the first request can take ~30–60 s; the free database expires after a limited period. Use a paid plan for anything beyond a demo.
