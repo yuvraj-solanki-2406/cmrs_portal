@@ -1,7 +1,6 @@
 # CMRS — Cash Management & Reconciliation System
 
 Tracks loan-repayment cash from customer → agent → branch → bank → company account.
-Design: [`docs/DESIGN.md`](docs/DESIGN.md) · Phase plans: `docs/phase-*.md`.
 
 **Stack:** Next.js (TypeScript, Tailwind) · Django + DRF · PostgreSQL · JWT (access in memory, refresh in httpOnly cookie).
 
@@ -57,11 +56,10 @@ All passwords: `Cmrs@12345`
 
 ## Deployment
 
-Hosted on Vercel (frontend) + Render (API + PostgreSQL). Steps, blueprint and smoke test: [`docs/deployment.md`](docs/deployment.md). Blueprint: [`render.yaml`](render.yaml).
+Hosted on Vercel (frontend) + Render (API + PostgreSQL).
 
-- **Hosted URL:** _to be filled after deploy_
-- **API docs (Swagger):** `<api-url>/api/docs/` · **Health:** `<api-url>/healthz`
-- The hosted database is seeded with branches and users only (`seed_demo --users-only`); create customers/loans through the UI. Set `DEMO_PASSWORD` on Render to change the demo password (then update the credentials table).
+- **Hosted URL:** [Live Demo](https://cmrs-portal.vercel.app/dashboard)
+- **API docs (Swagger):** `https://cmrs-api.onrender.com/api/docs/` · **Health:** `[Backend health Check](https://cmrs-api.onrender.com/healthz)`
 
 ## Environment variables
 
