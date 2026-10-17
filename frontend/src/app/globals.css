@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/* Light mode only. Brand palette: #091540 (ink) · #1B2CC1 (brand) · #7692FF (accent) · #ABD2FA (soft) */
+:root {
+  color-scheme: light;
+  --primary: #f3f7ff;
+  --secondary: #e6effd;
+  --tertiary: #abd2fa;
+  --ink: #091540;
+  --brand: #1b2cc1;
+  --brand-dark: #1423a0;
+  --accent: #7692ff;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-ink: var(--ink);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+}
+
+/* Neutral scale used across the app, re-mapped onto cool blue-greys. slate-900 doubles as the brand button colour. */
+@theme {
+  --color-slate-50: #f5f8ff;
+  --color-slate-100: #eaf1fd;
+  --color-slate-200: #d9e6f8;
+  --color-slate-300: #b4c6e8;
+  --color-slate-400: #6a79a8;
+  --color-slate-500: #55648f;
+  --color-slate-600: #3f4e7a;
+  --color-slate-700: #2a3866;
+  --color-slate-800: #14225a;
+  --color-slate-900: #1b2cc1;
+}
+
+html,
+body {
+  background: var(--primary);
+  color: var(--ink);
+}
+
+body {
+  background-image: radial-gradient(1200px 500px at 100% -10%, rgba(118, 146, 255, 0.14), transparent 60%);
+  background-attachment: fixed;
+}
+
+input,
+select,
+textarea {
+  color: var(--ink);
+  background-color: #ffffff;
+}
+
+input::placeholder {
+  color: #6a79a8;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@layer base {
+  /* Buttons: soft depth, lift on hover, press on click. Text-link buttons (underlined) are left flat. */
+  button:not([class*="underline"]) {
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgba(9, 21, 64, 0.12), 0 3px 8px rgba(27, 44, 193, 0.12);
+    transition: box-shadow 0.15s ease, transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+    cursor: pointer;
+  }
+  button:not([class*="underline"]):hover:not(:disabled) {
+    box-shadow: 0 2px 4px rgba(9, 21, 64, 0.14), 0 8px 18px rgba(27, 44, 193, 0.22);
+    transform: translateY(-1px);
+  }
+  button:not([class*="underline"]):active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(9, 21, 64, 0.2);
+  }
+  button:disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  a.bg-gradient-to-b {
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgba(9, 21, 64, 0.12), 0 3px 8px rgba(27, 44, 193, 0.18);
+    transition: box-shadow 0.15s ease, transform 0.15s ease, filter 0.15s ease;
+    color: #fff;
+  }
+  a.bg-gradient-to-b:hover { box-shadow: 0 2px 4px rgba(9, 21, 64, 0.14), 0 8px 18px rgba(27, 44, 193, 0.28); transform: translateY(-1px); filter: brightness(1.05); }
+  /* Cards */
+  .bg-white.rounded-lg {
+    box-shadow: 0 1px 2px rgba(9, 21, 64, 0.06), 0 6px 20px rgba(27, 44, 193, 0.07);
+    border: 1px solid rgba(171, 210, 250, 0.45);
+  }
+  .bg-white.rounded-lg.border-dashed { box-shadow: none; }
+  table thead { background: #eaf1fd; }
+  table tbody tr:hover { background: #f5f8ff; }
+}
